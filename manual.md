@@ -96,20 +96,7 @@ python leetspeak.py -d -lang en -m "$(cat encoded.txt)" -o decoded.txt
 
 ## Adding Additional Language Support
 
-To add support for additional languages, follow these steps:
-
-1. Open `multilang.py`.
-2. Add a new entry to the `language_data` list in the format:
-
-   ```python
-   ('language_id', {'4': 'A', '8': 'B', '|': 'L', ...}, 'module_name'),
-   ```
-
-   - Replace `'language_id'` with the ISO language indicator.
-   - Replace the dictionary `{'4': 'A', '8': 'B', '|': 'L', ...}` with the leet speak substitutions for the language.
-   - Replace `'module_name'` with the name of the module providing the language dictionary. Use `'custom'` if a custom dictionary is required.
-
-3. Save the file.
+To add additional language support to leetspeak, follow the proceedure outlined in [Appendix A](#appendix-a-adding-support-for-an-unsupported-language)
 
 ## Unsupported Languages
 
@@ -133,13 +120,22 @@ If a language is unsupported or lacks a dictionary module, the tool will raise a
    7h15 15 4n 3x4mpl3 73x7 70 d3c0d3 u51ng L337Sp34k.
    ```
 
-## Appendix: Adding Support for an Unsupported Language
+## Appendix A: Adding Support for an Unsupported Language
 
-Follow these steps to add support for an unsupported language:
+To add support for additional languages, follow these steps:
 
 1. Open `multilang.py`.
-2. Add a new entry to the `language_data` list following the [Adding Additional Language Support](#adding-additional-language-support) instructions.
-3. Save the file.
+2. Add a new entry to the `language_data` list in the format:
+
+   ```python
+   ('language_id', {'4': 'A', '8': 'B', '|': 'L', ...}, 'module_name'),
+   ```
+
+   - Replace `'language_id'` with the ISO language indicator.
+   - Replace the dictionary `{'4': 'A', '8': 'B', '|': 'L', ...}` with the leet speak substitutions for the language.
+   - Replace `'module_name'` with the name of the module providing the language dictionary. Use `'custom'` if a custom dictionary is required.
+   - Save the file. 
+   - Create a pull request and share your work with the community.
 
 Now, you can use the added language in the LeetSpeak Encoder/Decoder.
 

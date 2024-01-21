@@ -13,6 +13,7 @@
 7. [Example Text Files](#example-text-files)
 8. [Appendix: Adding Support for an Unsupported Language](#appendix-adding-support-for-an-unsupported-language)
 9. [Contributing and Source Code](#contributing-and-source-code)
+10. [License](#License)
 
 ## Quick Start
 
@@ -146,3 +147,6 @@ To contribute or access the source code, visit the GitHub repository:
 - GitHub Repository: [monotoba/leetspeak-encoder-decoder](https://github.com/Monotoba/leetspeak-encoder-decoder.git)
 
 Feel free to submit issues or pull requests to enhance the tool further. Your contributions are appreciated!
+
+## License
+This project is provided under the MIT license. [See License](LICENSE)

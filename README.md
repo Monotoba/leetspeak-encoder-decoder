@@ -11,6 +11,7 @@ The **leetspeak-encoder-decoder** provides a versatile Leet Speak encoder and de
 3. [Supported Languages](#supported-languages)
 4. [Contribution](#contribution)
 5. [Examples](#examples)
+6. [License](License)
 
 ## Overview
 
@@ -151,3 +152,6 @@ be greatly appreciated!
 For more examples and detailed usage scenarios, please refer to the provided example code in the `multilang.py` module and the `leetspeak.py` scripts and the [User Manual](manual.md).
 
 Feel free to experiment with different languages and text inputs to explore the versatility of the Leet Speak encoder and decoder. Your feedback and contributions are highly appreciated!
+
+## License
+LeetSpeak is licensed under the MIT License. [See LICENSE](LICENSE)

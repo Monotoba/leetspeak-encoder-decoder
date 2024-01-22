@@ -36,16 +36,16 @@ language_data = {
      'ج': 'j', 'د': 'd', 'ة': 'a', 'و': 'w', 'ج': 'j', 'د': 'd', 'ت': 't', 'ك': 'k', 'ل': 'l', 'أ': 'a', 'ر': 'r',
      'م': 'm', 'ي': 'y', 'س': 's', 'ح': 'h', 'ف': 'f', 'ن': 'n', 'ء': '`', 'ق': 'q', 'ط': 't', 'ع': 'e', 'ه': 'h',
      'ئ': '}', 'ـ': ''},
-    'custom'),
+    None),
     'da': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'de': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
         'nltk'),
     'el': (
         {'Α': '4', 'Β': '8', 'Λ': '|', 'Ε': '3', 'Γ': '9', 'Η': '|-|', 'Ι': '1', 'Ο': '0', 'Σ': '5', 'Τ': '7', 'Υ': '|_|'},
-        'custom'),
+        None),
     'en': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
         'nltk'),
@@ -54,7 +54,7 @@ language_data = {
         'nltk'),
     'fi': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'fr': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
         'nltk'),
@@ -63,19 +63,19 @@ language_data = {
         'nltk'),
     'he': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'hi': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'haw': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'id': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'iu': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'it': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
         'nltk'),
@@ -84,16 +84,16 @@ language_data = {
         'nltk'),
     'ko': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'ms': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'nl': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
         'nltk'),
     'no': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'pl': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
         'nltk'),
@@ -102,27 +102,27 @@ language_data = {
         'nltk'),
     'ro': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'ru': (
         {'А': '4', 'Б': '6', 'В': 'B', 'Г': 'r', 'Д': 'g', 'Е': 'e', 'Є': '3', 'Ж': 'ж', 'З': '3', 'И': 'u', 'І': 'i',
          'Ї': 'i', 'Й': 'й', 'К': 'k', 'Л': 'l', 'М': 'M', 'Н': 'H', 'О': '0', 'П': 'n', 'Р': 'p', 'С': 'c', 'Т': 'T',
          'У': 'y', 'Ф': 'ф', 'Х': 'x', 'Ц': 'u', 'Ч': '4', 'Ш': 'ш', 'Щ': 'щ', 'Ь': 'b', 'Ю': '10', 'Я': '9'}, 'nltk'),
     'sv': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'th': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'tr': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'uk': (
         {'А': '4', 'Б': '6', 'В': 'B', 'Г': 'r', 'Д': 'g', 'Е': 'e', 'Є': '3', 'Ж': 'ж', 'З': '3', 'И': 'u', 'І': 'i',
          'Ї': 'i', 'Й': 'й', 'К': 'k', 'Л': 'l', 'М': 'M', 'Н': 'H', 'О': '0', 'П': 'n', 'Р': 'p', 'С': 'c', 'Т': 'T',
          'У': 'y', 'Ф': 'ф', 'Х': 'x', 'Ц': 'u', 'Ч': '4', 'Ш': 'ш', 'Щ': 'щ', 'Ь': 'b', 'Ю': '10', 'Я': '9'}, 'nltk'),
     'vi': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
-        'custom'),
+        None),
     'zh': (
         {'A': '4', 'B': '8', 'L': '|', 'E': '3', 'G': '9', 'H': '|-|', 'I': '1', 'O': '0', 'S': '5', 'T': '7', 'U': '|_|'},
         'nltk'),
@@ -167,7 +167,7 @@ def get_language_dictionary_module(lang_id: str) -> str:
     if lang_id in language_data:
         _, module_to_import = language_data[lang_id]
 
-        if module_to_import == 'custom':
+        if module_to_import is None:
             print(f"Warning: The language '{lang_id}' requires a custom language dictionary for decoding.")
             print("Defaulting to language dictionary NLTK for decoding.")
             module_to_import = 'nltk'
@@ -196,19 +196,19 @@ def decode_leet(cypher_text: str, lang_id: str = 'en'):
     while i < len(cypher_text):
         found_multi_char = False
         for multi_char in sorted(reverse_lookup_dict.keys(), key=len, reverse=True):
-            if cypher_text[i:i + len(multi_char)].lower() == multi_char:
-                decoded_text += reverse_lookup_dict[multi_char].lower()
+            if cypher_text[i:i + len(multi_char)].upper() == multi_char:
+                decoded_text += reverse_lookup_dict[multi_char].upper()
                 i += len(multi_char)
                 found_multi_char = True
                 break
 
         if not found_multi_char:
-            char = cypher_text[i].lower()
+            char = cypher_text[i].upper()
             if char in reverse_lookup_dict:
-                decoded_text += reverse_lookup_dict[char].lower()
+                decoded_text += reverse_lookup_dict[char].upper()
             else:
                 decoded_text += char
-            i += 1
+        i += 1
 
     # TODO: Add support for language dictionaries to be used for decoding in case of ambiguity
     decoded_text = decoded_text.capitalize()

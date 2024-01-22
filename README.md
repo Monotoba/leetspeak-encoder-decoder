@@ -12,6 +12,7 @@ The **leetspeak-encoder-decoder** provides a versatile Leet Speak encoder and de
 4. [Contribution](#contribution)
 5. [Examples](#examples)
 6. [License](License)
+7. [User Manual](manual.md)
 
 ## Overview
 

@@ -149,4 +149,4 @@ To contribute or access the source code, visit the GitHub repository:
 Feel free to submit issues or pull requests to enhance the tool further. Your contributions are appreciated!
 
 ## License
-This project is provided under the MIT license. See the [License](LICENSE) document.
+This project is provided under the MIT license. See [License](LICENSE) document.

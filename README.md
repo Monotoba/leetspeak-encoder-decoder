@@ -154,4 +154,4 @@ For more examples and detailed usage scenarios, please refer to the provided exa
 Feel free to experiment with different languages and text inputs to explore the versatility of the Leet Speak encoder and decoder. Your feedback and contributions are highly appreciated!
 
 ## License
-LeetSpeak is licensed under the MIT License. [See LICENSE](LICENSE)
+LeetSpeak is licensed under the MIT License. See the [LICENSE](LICENSE) document.

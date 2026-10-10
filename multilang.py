@@ -149,7 +149,8 @@ def get_character_replacement_dict(lang_id: str) -> dict:
         raise ValueError(f"Unsupported language ID: '{lang_id}'.")
 
 def create_reverse_dict(original_dict):
-    return {v: k for k, v in original_dict.items()}
+    """Reverse nonempty tokens, case-insensitively; the last collision wins."""
+    return {v.upper(): k for k, v in original_dict.items() if v}
 
 def get_language_dictionary_module(lang_id: str) -> str:
     """
@@ -179,7 +180,7 @@ def get_language_dictionary_module(lang_id: str) -> str:
 
 def decode_leet(cypher_text: str, lang_id: str = 'en'):
     """
-    Decode leet speak text into its original alphabetical form.
+    Decode tokens greedily into best-effort text; original case/ambiguity is lost.
 
     Args:
         cypher_text (str): Leet speak text to decode.
@@ -190,25 +191,20 @@ def decode_leet(cypher_text: str, lang_id: str = 'en'):
     """
     dictionary = get_character_replacement_dict(lang_id)
     reverse_lookup_dict = create_reverse_dict(dictionary)
-    decoded_text = ''
-
+    decoded_parts = []
+    tokens = sorted(reverse_lookup_dict, key=len, reverse=True)
     i = 0
     while i < len(cypher_text):
-        found_multi_char = False
-        for multi_char in sorted(reverse_lookup_dict.keys(), key=len, reverse=True):
-            if cypher_text[i:i + len(multi_char)].upper() == multi_char:
-                decoded_text += reverse_lookup_dict[multi_char].upper()
-                i += len(multi_char)
-                found_multi_char = True
+        for token in tokens:
+            if cypher_text[i:i + len(token)].upper() == token:
+                decoded_parts.append(reverse_lookup_dict[token].upper())
+                i += len(token)
                 break
+        else:
+            decoded_parts.append(cypher_text[i].upper())
+            i += 1
 
-        if not found_multi_char:
-            char = cypher_text[i].upper()
-            if char in reverse_lookup_dict:
-                decoded_text += reverse_lookup_dict[char].upper()
-            else:
-                decoded_text += char
-        i += 1
+    decoded_text = ''.join(decoded_parts)
 
     # TODO: Add support for language dictionaries to be used for decoding in case of ambiguity
     decoded_text = decoded_text.capitalize()
@@ -263,3 +259,4 @@ if __name__ == '__main__':
     clear_text = decode_leet(encoded_text, language_id)
     clear_text = clear_text.capitalize()
     print(f"Decoded Text: {clear_text}")
+

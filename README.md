@@ -1,158 +1,89 @@
-# leetspeak-encoder-decoder
+# LeetSpeak encoder/decoder
 
-## Introduction
+[![Tests](https://github.com/Monotoba/leetspeak-encoder-decoder/actions/workflows/tests.yml/badge.svg)](https://github.com/Monotoba/leetspeak-encoder-decoder/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Status](https://img.shields.io/badge/status-experimental-orange)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-The **leetspeak-encoder-decoder** provides a versatile Leet Speak encoder and decoder tool that supports multiple languages. Leet Speak, also known as 1337 speak, is an alternative alphabet used primarily on the internet, where characters are replaced with various combinations of ASCII characters.
+Turn text into playful 1337 substitutions, or decode it into best-effort readable
+text. Use the Python CLI for messages and UTF-8 files, or import the two functions
+in your own scripts. No third-party dependencies are needed.
 
-## Contents
-
-1. [Overview](#overview)
-2. [Usage](#usage)
-3. [Supported Languages](#supported-languages)
-4. [Contribution](#contribution)
-5. [Examples](#examples)
-6. [License](License)
-7. [User Manual](manual.md)
-
-## Overview
-
-### Getting LeetSpeak
-Simply download or clone the repository on GitHub at github.com/monotoba/leetspeak-encoder-decoder
-
-```bash
-git clone https://github.com/monotoba/leetspeak-encoder-decoder
+```text
+Hello, World!  →  |-|3||0, W0r|d!  →  Hello, world!
 ```
 
-### 1. **multilang.py**
-The `multilang.py` module is the core of the Leet Speak encoder and decoder. It provides character replacement dictionaries for various languages, allowing users to encode and decode text. The module includes:
+**Experimental:** decoding is lossy, and the language maps are community drafts.
+This is character substitution, not encryption, translation or automatic language
+recognition. Original capitalization, ambiguous characters and deleted characters
+cannot be recovered reliably.
 
-- A dictionary of character replacements for multiple languages.
-- Functions to get the character replacement dictionary and language dictionary module based on language identifiers.
-- Leet Speak encoding and decoding functions.
+## Try it
 
-### 2. **leetspeak.py**
-The `leetspeak.py` script serves as the command-line interface for the Leet Speak encoder and decoder. It supports encoding and decoding of text strings and can read from/write to files. The script utilizes the `multilang.py` module.
+Use Python 3.10+; no package installation is required:
 
+```sh
+git clone https://github.com/Monotoba/leetspeak-encoder-decoder.git
+cd leetspeak-encoder-decoder
+python leetspeak.py --help
+python leetspeak.py --encode --message "Hello, World!"
+python leetspeak.py --decode --message "|-|3||0, W0r|d!"
+python leetspeak.py --encode --language uk --input examples/decoded_text_uk.txt
+```
 
-## Usage
+Select exactly one operation (`--encode` or `--decode`) and one input (`--message`
+or `--input`). `--output FILE` writes only the transformed text as UTF-8 and
+replaces an existing file. Without it, a labeled result prints once to the terminal.
+`--verbose` additionally prints word and character counts. An empty message is
+valid. See the [manual](manual.md) for options, errors and decoding rules.
 
-### 1. **multilang.py Usage**
-
-The `multilang.py` module can be used in your Python projects. Here is an example:
+## Use from Python
 
 ```python
-if __name__ == '__main__':
-    language_id = 'en'
+from multilang import encode_leet, decode_leet
 
-    # Get and display the character replacement dictionary
-    char_replacement_dict = get_character_replacement_dict(language_id)
-    print(f"The character replacement dictionary for language '{language_id}' is: {char_replacement_dict}")
-
-    # Get and display the language dictionary module
-    language_dict = get_language_dictionary_module(language_id)
-    print(f"The language dictionary for language  '{language_id}' is: {language_dict}")
-
-    # Test encoding and decoding
-    test_text = "Hello, World!"
-    encoded_text = encode_leet(test_text, language_id)
-    decoded_text = decode_leet(encoded_text, language_id)
-
-    print(f"Encoded Text: {encoded_text}")
-    print(f"Decoded Text: {decoded_text}")
+encoded = encode_leet("Hello, World!", "en")
+print(encoded)               # |-|3||0, W0r|d!
+print(decode_leet(encoded))   # Hello, world!
 ```
 
-### 2. **leetspeak.py Usage**
+## Language-map status
 
-The `leetspeak.py` script is designed for command-line usage. It supports the following arguments:
+Thirty identifiers are accepted, but they do **not** represent thirty fully
+implemented language systems. `--help` lists the identifiers.
 
-- `-e` or `--encode`: Encode clear text into Leet Speak.
-- `-d` or `--decode`: Decode Leet Speak text into clear text.
-- `-lang` or `--language`: Specify the language (default is 'en').
-- `-m` or `--message`: Provide the text string to encode or decode.
-- `-i` or `--input`: Specify the input file name for encoded/decoded text if not using the -m flag.
-- `-o` or `--output`: Specify the output file name to save encoded/decoded text to.
-- `-v` or `--verbose`: Display additional information about the text.
-- 
-Note: that either the -m flag or the -i flag must be use to provide input to the script.
-Likewise, either -e or -d flag must be passed to indicate the input will be encoded or decoded.
+| Identifiers | Current mapping |
+| --- | --- |
+| en | Eleven Latin-letter substitutions |
+| da, de, es, fi, fr, fr_ca, haw, id, it, ms, nl, no, pl, pt_br, ro, sv, tr, vi | Same Latin table as en; no language-specific accented-letter coverage |
+| he, hi, iu, ja, ko, th, zh | Latin placeholder table; no native-script substitution coverage |
+| ar, el, ru, uk | Distinct Arabic, Greek or Cyrillic draft tables; incomplete and potentially ambiguous |
 
-Here is an example command:
+Many replacement tokens collide, particularly in the draft Arabic/Cyrillic maps.
+Decoding selects the longest matching token and uses the last dictionary entry
+for an ambiguous case-insensitive token, then applies sentence-style casing to
+the entire result. It does not use NLTK or a word dictionary. The legacy dictionary
+module lookup is metadata only; it does not add linguistic decoding.
 
-```bash
-python leetspeak.py --encode --language en --message "Hello, World!" --output encoded.txt
+The Arabic source table contains duplicate keys (Python retains the last value)
+and removes the elongation mark `ـ` during encoding. The decoder cannot recreate
+removed marks. Language experts and native speakers are especially welcome to
+improve these tables with examples and tests.
+
+## Development and contributions
+
+```sh
+python -m unittest discover -s tests -v
 ```
 
-## Example Usage
-The repo contains an examples folder that contains both encoded and decoded example text files.
-These files are named either decoded_text_<land_id>.txt or encoded_text_<lang_id>.txt. 
-Where <lang_id>is a placeholder for the ISO 639 language identifier such as "en" and "fr".
+CI runs on Linux, Windows and Intel macOS with Python 3.10/3.12. Tests cover token
+boundaries, ambiguous/empty tokens, Unicode, CLI argument validation and file I/O.
+The existing `examples/` files are historical demonstrations, not verified
+round-trip fixtures.
 
-```bash
-python leetspeak -d -i examples/encoded_text_en.txt
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for focused starter tasks. Report a concrete
+input, selected language, expected output and actual output in an
+[issue](https://github.com/Monotoba/leetspeak-encoder-decoder/issues). No release
+or PyPI package is currently published. See [changes](CHANGELOG.md).
 
-This will decode the example file encoded_text_en.txt and display the decoded text in the terminal.
-
-```bash
-python leetspeak.py -e -lang uk -i examples/decoded_text_uk.txt
-```
-
-This will encode the text in the Ukrainian example file examples/decoded_text_uk.txt and display the encoded text in the terminal.
-
-```bash
-python leetspeak -v -e -lang ar -i examples/decoded_text_ar.txt -o encoded_text_ar.txt
-```
-This will encode the text in the Arabic example file and write the encoded text to the encoded_text_ar.txt file. 
-The use of the -v flag will also display information about the encoded text in the terminal. 
-
-## Supported Languages
-
-The Leet Speak encoder and decoder currently support the following languages:
-
-- Arabic (`ar`)
-- Danish (`da`)
-- German (`de`)
-- Greek (`el`)
-- English (`en`)
-- Spanish (`es`)
-- Finnish (`fi`)
-- French (`fr`)
-- French (Canada) (`fr_ca`)
-- Hebrew (`he`)
-- Hindi (`hi`)
-- Hawaiian (`haw`)
-- Indonesian (`id`)
-- Inuktitut (`iu`)
-- Italian (`it`)
-- Japanese (`ja`)
-- Korean (`ko`)
-- Malay (`ms`)
-- Dutch (`nl`)
-- Norwegian (`no`)
-- Polish (`pl`)
-- Portuguese (Brazil) (`pt_br`)
-- Romanian (`ro`)
-- Russian (`ru`)
-- Swedish (`sv`)
-- Thai (`th`)
-- Turkish (`tr`)
-- Ukrainian (`uk`)
-- Vietnamese (`vi`)
-- Chinese (`zh`)
-
-## Contribution
-
-The repository welcomes contributions to correct and enhance language support. If you have knowledge of Leet Speak in a 
-language not currently supported or you find inaccuracies, please contribute by submitting a pull request. I am not 
-multilingual and some of the supported languages simple use the english alphabet at the moment. If you can provide
-language data for any of these languages please clone the repo and create a pull request with your updates. They will 
-be greatly appreciated! 
-
-## Examples
-
-For more examples and detailed usage scenarios, please refer to the provided example code in the `multilang.py` module and the `leetspeak.py` scripts and the [User Manual](manual.md).
-
-Feel free to experiment with different languages and text inputs to explore the versatility of the Leet Speak encoder and decoder. Your feedback and contributions are highly appreciated!
-
-## License
-LeetSpeak is licensed under the MIT License. See the [LICENSE](LICENSE) document.
+Licensed under the [MIT License](LICENSE).

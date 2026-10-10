@@ -5,7 +5,7 @@
 Leet Speak Encoder/Decoder
 
 This script allows users to encode clear text into leet speak and decode leet speak text
-back into its original alphabetical form. It supports multiple languages and provides
+into best-effort readable text. It supports multiple languages and provides
 a customizable dictionary for leet speak substitutions.
 
 Author: R. Morgan
@@ -14,10 +14,9 @@ Date: January 20, 2024
 """
 
 import argparse
-from collections import Counter
-from langid import classify  # Install langid: pip install langid
+import sys
 
-from multilang import encode_leet, decode_leet
+from multilang import encode_leet, decode_leet, language_data
 
 
 def display_info(text):
@@ -31,54 +30,44 @@ def display_info(text):
     char_count = len(text)
     print(f'Text Length: {word_count} words, {char_count} characters')
 
-def main():
+def main(argv=None):
     """
     Main function to handle command-line arguments and execute leet speak encoding/decoding.
     """
     parser = argparse.ArgumentParser(description='Leet Speak Encoder/Decoder')
-    parser.add_argument('-e', '--encode', action='store_true', help='Encode clear text into leet speak')
-    parser.add_argument('-d', '--decode', action='store_true', help='Decode leet speak text into clear text')
-    parser.add_argument('-lang', '--language', default='en', help='ISO language indicator (default: en)')
-    parser.add_argument('-m', '--message', help='Text string to encode or decode')
-    parser.add_argument('-i', '--input', help='File name to read encoded/decoded text')
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument('-e', '--encode', action='store_true', help='Encode clear text into leet speak')
+    mode.add_argument('-d', '--decode', action='store_true', help='Decode leet speak text into clear text')
+    parser.add_argument('-lang', '--language', default='en', type=str.lower, choices=sorted(language_data),
+                        help='Replacement-map identifier (default: en)')
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('-m', '--message', help='Text string to encode or decode')
+    source.add_argument('-i', '--input', help='File name to read encoded/decoded text')
     parser.add_argument('-o', '--output', help='File name to save encoded/decoded text')
     parser.add_argument('-v', '--verbose', action='store_true', help='Display additional information about the text')
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    language_id = args.language.lower()
+    try:
+        if args.message is not None:
+            input_text = args.message
+        else:
+            with open(args.input, 'r', encoding='utf-8') as file:
+                input_text = file.read()
 
-    if args.message:
-        input_text = args.message
-    elif args.input:
-        with open(args.input, 'r', encoding='utf-8') as file:
-            input_text = file.read()
-    else:
-        raise ValueError("Please provide either a text string (-m) or an input file (-i).")
-
-    if args.encode:
-        output_text = encode_leet(input_text, language_id)
-        print(f'Encoded Leet Speak Text: {output_text}')
-
-        if args.verbose:
-            display_info(output_text)
-
+        transform = encode_leet if args.encode else decode_leet
+        output_text = transform(input_text, args.language)
         if args.output:
             with open(args.output, 'w', encoding='utf-8') as file:
                 file.write(output_text)
         else:
-            print(f"Encoded Text: {output_text}")
-
-    elif args.decode:
-        decoded_text = decode_leet(input_text, language_id)
-
+            label = 'Encoded' if args.encode else 'Decoded'
+            print(f'{label} Text: {output_text}')
         if args.verbose:
-            display_info(decoded_text)
-
-        if args.output:
-            with open(args.output, 'w', encoding='utf-8') as file:
-                file.write(decoded_text)
-        else:
-            print(f"Decoded Text: {decoded_text}")
+            display_info(output_text)
+    except (OSError, UnicodeError) as error:
+        parser.exit(1, f'{parser.prog}: {error}\n')
+    return 0
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
+

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.0a1 — 2026-10-10
 
 - Fix decoding that skipped the character immediately following a matched token.
 - Match replacement tokens case-insensitively and exclude empty reverse tokens.
@@ -10,4 +10,4 @@
 - Add regression tests, cross-platform CI, badges, working examples and accurate
   language-map/decoding limitations. Existing MIT license remains unchanged.
 
-No tagged release or installable package is provided yet.
+Initial experimental source release. No PyPI or installable package is provided.

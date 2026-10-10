@@ -83,7 +83,10 @@ round-trip fixtures.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for focused starter tasks. Report a concrete
 input, selected language, expected output and actual output in an
-[issue](https://github.com/Monotoba/leetspeak-encoder-decoder/issues). No release
-or PyPI package is currently published. See [changes](CHANGELOG.md).
+[issue](https://github.com/Monotoba/leetspeak-encoder-decoder/issues). The [0.1.0a1 alpha](https://github.com/Monotoba/leetspeak-encoder-decoder/releases/tag/v0.1.0a1)
+is distributed as source archives. Download and extract an archive, then run the
+same Python commands above from its project directory. No PyPI package or
+installation step is provided. See [changes](CHANGELOG.md) and
+[alpha scope](RELEASE_NOTES.md).
 
 Licensed under the [MIT License](LICENSE).
